@@ -8,7 +8,7 @@
 declare(strict_types=1);
 namespace Fukawi2\Fuckless;
 
-class Fuckless {
+class Main {
 
   const badWords = [
     'arse',
@@ -26,10 +26,10 @@ class Fuckless {
    */
   public static function hasBadWords(string $text) {
     if (!$text)
-      return null;
+      return false;
 
     $regex = "(" . implode("|",array_map("preg_quote", self::badWords)) . ")i";
-    if (preg_match($regex, $text, $foundMatches)) {
+    if (preg_match_all($regex, $text, $foundMatches)) {
       # Oh noes, bad words!
       return $foundMatches;
     }
